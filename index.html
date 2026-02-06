@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reset Session</title>
   <meta name="description" content="A lightweight tool to reset session state and clear temporary browsing data." />
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-
   <main class="wrap">
     <header class="top">
       <div class="brand">Reset Session</div>
     </header>
 
-    <!-- START -->
     <section id="start" class="card">
       <h1>Reset your session</h1>
       <p class="sub">
@@ -27,31 +23,19 @@
       <p class="hint">Takes ~20 seconds. You can exit anytime.</p>
     </section>
 
-    <!-- PROCESS -->
     <section id="process" class="card hidden" aria-live="polite">
       <div class="row">
         <h2>Processing</h2>
         <button id="btnExit" class="btn ghost" type="button">Exit</button>
       </div>
 
-      <div class="progress">
-        <div id="bar" class="bar"></div>
-      </div>
-
+      <div class="progress"><div id="bar" class="bar"></div></div>
       <div id="step">Preparing…</div>
+      <div class="meta"><span id="timer">00:20</span><span>•</span><span>Do not close this tab</span></div>
 
-      <div class="meta">
-        <span id="timer">00:20</span>
-        <span>•</span>
-        <span>Do not close this tab</span>
-      </div>
-
-      <div class="ad-slot">
-        Banner slot (ads later)
-      </div>
+      <div class="ad-slot">Banner slot (enable ads later after approval)</div>
     </section>
 
-    <!-- DONE -->
     <section id="done" class="card hidden">
       <h2>Done</h2>
       <p class="sub">Session reset completed.</p>
@@ -60,8 +44,6 @@
     </section>
   </main>
 
-  <!-- JS -->
   <script src="./app.js"></script>
-
 </body>
 </html>
