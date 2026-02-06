@@ -121,3 +121,10 @@ h1,h2{margin:0 0 10px}
   background: rgba(0,0,0,0.12);
   font-size: 13px;
 }
+.nav a{
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 12px;
+  font-size: 14px;
+}
+.nav a:hover{ color: var(--text); }
