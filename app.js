@@ -16,21 +16,30 @@ function show(el){ el.classList.remove("hidden"); }
 function hide(el){ el.classList.add("hidden"); }
 
 function fmt(s){
-  const mm = String(Math.floor(s/60)).padStart(2,"0");
-  const ss = String(s%60).padStart(2,"0");
+  const mm = String(Math.floor(s / 60)).padStart(2, "0");
+  const ss = String(s % 60).padStart(2, "0");
   return mm + ":" + ss;
 }
 
 function goStart(){
-  clearInterval(interval); interval = null;
-  show(start); hide(process); hide(done);
+  clearInterval(interval);
+  interval = null;
+
+  show(start);
+  hide(process);
+  hide(done);
+
   bar.style.width = "0%";
   step.textContent = "Preparing…";
   timer.textContent = "00:20";
 }
 
 function goProcess(){
-  hide(start); show(process); hide(done);
+  if (interval) return; // evita doppia partenza
+
+  hide(start);
+  show(process);
+  hide(done);
 
   const total = 20;
   const steps = [
@@ -49,40 +58,49 @@ function goProcess(){
   bar.style.width = "0%";
 
   interval = setInterval(() => {
-    remaining -= 1;
-    elapsed += 1;
-    stepRemaining -= 1;
+    remaining--;
+    elapsed++;
+    stepRemaining--;
 
-    bar.style.width = Math.min(100, Math.round((elapsed/total)*100)) + "%";
+    bar.style.width = Math.min(100, Math.round((elapsed / total) * 100)) + "%";
     timer.textContent = fmt(Math.max(0, remaining));
 
     if (stepRemaining <= 0 && idx < steps.length - 1) {
-      idx += 1;
+      idx++;
       stepRemaining = steps[idx].t;
       step.textContent = steps[idx].label;
     }
 
     if (remaining <= 0) {
-      clearInterval(interval); interval = null;
+      clearInterval(interval);
+      interval = null;
       goDone();
     }
   }, 1000);
 }
 
 function goDone(){
-  hide(start); hide(process); show(done);
+  hide(start);
+  hide(process);
+  show(done);
 }
 
-btnStart.addEventListener("click", goProcess);
+// Eventi utente
+btnStart.addEventListener("click", () => {
+  if (!interval) {
+    goProcess();
+  }
+});
+
 btnExit.addEventListener("click", goStart);
 btnClose.addEventListener("click", goStart);
 
-<p class="hint">Preparing reset… Please wait.</p>
-
-goStart();
-// Auto-start after 1200ms to reduce friction
+// Auto-start condizionato (PASSAGGIO NEUTRO)
 setTimeout(() => {
   if (!interval) {
     goProcess();
   }
 }, 1200);
+
+// Boot
+goStart();
