@@ -133,3 +133,4 @@ header.top::before,
 header.top::after{
   content: none !important;
 }
+.brand { opacity: .85; font-size: 14px; }
