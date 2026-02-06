@@ -128,3 +128,8 @@ h1,h2{margin:0 0 10px}
   font-size: 14px;
 }
 .nav a:hover{ color: var(--text); }
+/* Fix: prevent accidental duplicated header text */
+header.top::before,
+header.top::after{
+  content: none !important;
+}
