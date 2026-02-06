@@ -77,6 +77,8 @@ btnStart.addEventListener("click", goProcess);
 btnExit.addEventListener("click", goStart);
 btnClose.addEventListener("click", goStart);
 
+<p class="hint">Preparing reset… Please wait.</p>
+
 goStart();
 // Auto-start after 1200ms to reduce friction
 setTimeout(() => {
