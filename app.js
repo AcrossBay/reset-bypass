@@ -78,3 +78,9 @@ btnExit.addEventListener("click", goStart);
 btnClose.addEventListener("click", goStart);
 
 goStart();
+// Auto-start after 1200ms to reduce friction
+setTimeout(() => {
+  if (!interval) {
+    goProcess();
+  }
+}, 1200);
